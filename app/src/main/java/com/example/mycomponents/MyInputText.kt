@@ -1,11 +1,9 @@
 package com.example.mycomponents
 
-import android.icu.text.CaseMap.Title
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,26 +32,31 @@ fun InputText(
     labelTitle: String,
     errorMessage: String,
     placeHolder: String,
-    hasErrorMessage: Boolean,
-    hasLabel: Boolean,
+    hasError: Boolean,
     hasImageStart: Boolean,
     hasImageEnd: Boolean,
-
+    modifier: Modifier = Modifier
 ) {
 
-    Column() {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(20.dp, 0.dp)
+    ) {
 
-        if (hasLabel)
+        if (labelTitle.isNotEmpty()) {
             Text(
-                text = labelTitle
+                text = labelTitle,
+                fontSize = 12.sp
             )
 
+            Spacer(modifier = Modifier.height(6.dp))
+        }
 
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp, 0.dp)
                 .background(
                     color = Color.White,
                     shape = RoundedCornerShape(size = 16.dp)
@@ -72,57 +74,113 @@ fun InputText(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                if (hasImageStart) {
-                    MyImage(
-                        imageId = R.drawable.ic_launcher_background,
-                        modifier = Modifier.size(20.dp)
-                    )
 
-                    Spacer(modifier = Modifier.width(10.dp))
-                }
+                if (hasImageStart)
+                    PairImagesStart()
 
-                BasicTextField(
-                    value = inputText,
-                    onValueChange = {},
-                    textStyle = TextStyle(
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray
-                    ),
-                    modifier = Modifier.height(43.dp),
-                    decorationBox = {
-                        if (inputText.isEmpty()) {
-                            Text(
-                                text = placeHolder,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.LightGray,
-                                modifier  = Modifier.wrapContentSize()
-                            )
-                        }
-                    }
-
-                )
-
+                MyBasicTextField(inputText = inputText, placeHolder = placeHolder)
             }
 
 
+            if (hasImageEnd)
+                PairImagesEnd()
 
-            if (hasImageEnd) {
-                MyImage(
-                    imageId = R.drawable.ic_launcher_background,
-                    modifier = Modifier.size(20.dp)
-                )
             }
+
+        if (errorMessage.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(text = errorMessage)
+        }
+
 
         }
 
     }
 
 
+@Composable
+fun MyBasicTextField(
+    inputText: String,
+    placeHolder: String) {
 
+    BasicTextField(
+        value = inputText,
+        onValueChange = {},
+        textStyle = TextStyle(
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Medium,
+            color = Color.DarkGray
+        ),
+        modifier = Modifier.height(43.dp),
+        decorationBox = {
+            if (inputText.isEmpty()) {
+                Text(
+                    text = placeHolder,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color.LightGray,
+                    modifier  = Modifier.wrapContentSize()
+                )
+            }
+        }
+    )
 }
 
+
+@Composable
+fun PairImagesStart() {
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+
+        MyImage(
+            imageId = R.drawable.ic_launcher_background,
+            modifier = Modifier.size(20.dp)
+        )
+
+        Spacer(modifier = Modifier.width(5.dp))
+
+        MyImage(
+            imageId = R.drawable.grey_vertical_line,
+            modifier = Modifier
+                .width(1.dp)
+                .height(20.dp)
+        )
+
+        Spacer(modifier = Modifier.width(5.dp))
+    }
+}
+
+@Composable
+fun PairImagesEnd() {
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+
+        Spacer(modifier = Modifier.width(5.dp))
+
+
+        MyImage(
+            imageId = R.drawable.grey_vertical_line,
+            modifier = Modifier
+                .width(1.dp)
+                .height(20.dp)
+        )
+
+        Spacer(modifier = Modifier.width(5.dp))
+
+
+        MyImage(
+            imageId = R.drawable.ic_launcher_background,
+            modifier = Modifier.size(20.dp)
+        )
+
+    }
+}
 
 
 
@@ -131,13 +189,20 @@ fun InputText(
 private fun InputTextPreview() {
     InputText(
         inputText = "input value",
-        labelTitle = "",
-        errorMessage = "",
+        labelTitle = "My label",
+        errorMessage = " error message ",
         placeHolder = "this is my input text ",
-        hasErrorMessage = false,
-        hasLabel = false,
         hasImageStart = true,
-        hasImageEnd = true ,
-
+        hasImageEnd = true,
+        hasError = true,
     )
 }
+
+
+
+/*
+    1. Add Util classes for colors, drawables, etc
+    2. add modules for di and cache
+    3. add ApiResponse sealed class
+    4.
+ */
