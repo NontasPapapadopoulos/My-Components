@@ -36,15 +36,17 @@ fun InputText(
     labelTitle: String = "",
     errorMessage: String = "",
     placeHolder: String,
-    hasError: Boolean,
+    hasError: Boolean = false,
     hasImageStart: Boolean = true,
-    imageStartId: Int?,
-    imageStartWidth: Int?,
-    imageStartHeight: Int?,
+    startImageHasVerticalLine: Boolean? = null,
+    imageStartId: Int? = null,
+    imageStartWidth: Int? = null ,
+    imageStartHeight: Int? = null,
     hasImageEnd: Boolean = false,
-    imageEndId: Int?,
-    imageEndWidth: Int?,
-    imageEndHeight: Int?,
+    endImageHasVerticalLine: Boolean? = null,
+    imageEndId: Int? = null,
+    imageEndWidth: Int? = null,
+    imageEndHeight: Int? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     modifier: Modifier = Modifier
 ) {
@@ -89,7 +91,8 @@ fun InputText(
                     PairImagesStart(
                         startImageId = imageStartId!!,
                         startImageHeight = imageStartHeight!!,
-                        startImageWidth = imageStartWidth!!
+                        startImageWidth = imageStartWidth!!,
+                        startImageHasVerticalLine = startImageHasVerticalLine!!
                     )
 
                 MyBasicTextField(
@@ -108,7 +111,8 @@ fun InputText(
                 PairImagesEnd(
                     imageEndId = imageEndId!!,
                     imageEndWidth = imageEndWidth!!,
-                    imageEndHeigh = imageEndHeight!!
+                    imageEndHeigh = imageEndHeight!!,
+                    endImageHasVerticalLine = endImageHasVerticalLine!!
                 )
             }
 
@@ -164,6 +168,7 @@ fun PairImagesStart(
     startImageId: Int,
     startImageWidth: Int,
     startImageHeight: Int,
+    startImageHasVerticalLine: Boolean
 ) {
 
     Row(
@@ -178,16 +183,22 @@ fun PairImagesStart(
                 .height(startImageHeight.dp)
         )
 
-        Spacer(modifier = Modifier.width(5.dp))
+        if (startImageHasVerticalLine) {
 
-        MyImage(
-            imageId = R.drawable.grey_vertical_line,
-            modifier = Modifier
-                .width(1.dp)
-                .height(20.dp)
-        )
+            Spacer(modifier = Modifier.width(5.dp))
 
-        Spacer(modifier = Modifier.width(5.dp))
+            MyImage(
+                imageId = R.drawable.grey_vertical_line,
+                modifier = Modifier
+                    .width(1.dp)
+                    .height(20.dp)
+            )
+
+            Spacer(modifier = Modifier.width(5.dp))
+        }
+
+        else
+            Spacer(modifier = Modifier.width(10.dp))
     }
 }
 
@@ -195,25 +206,32 @@ fun PairImagesStart(
 fun PairImagesEnd(
     imageEndId: Int,
     imageEndWidth: Int,
-    imageEndHeigh: Int
+    imageEndHeigh: Int,
+    endImageHasVerticalLine: Boolean
 ) {
+
 
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
+        if (endImageHasVerticalLine) {
 
-        Spacer(modifier = Modifier.width(5.dp))
+            Spacer(modifier = Modifier.width(5.dp))
 
 
-        MyImage(
-            imageId = R.drawable.grey_vertical_line,
-            modifier = Modifier
-                .width(1.dp)
-                .height(20.dp)
-        )
+            MyImage(
+                imageId = R.drawable.grey_vertical_line,
+                modifier = Modifier
+                    .width(1.dp)
+                    .height(20.dp)
+            )
 
-        Spacer(modifier = Modifier.width(5.dp))
+            Spacer(modifier = Modifier.width(5.dp))
+        }
+        else
+            Spacer(modifier = Modifier.width(10.dp))
+
 
 
         MyImage(
