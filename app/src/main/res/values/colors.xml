@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="isx_gold_600">#D3A54C</color>
+    <color name="isx_gold_200">#EDDBB7</color>
+<!--    <color name="grey_iban">#3D4A5C</color>-->
+<!--    <color name="isx_grey_50">#F4F6F7</color>-->
+<!--    <color name="isx_grey_300">#A3AEBD</color>-->
+<!--    <color name="isx_grey_400">#76859A</color>-->
+<!--    <color name="isx_grey_500">#64748B</color>-->
+<!--    <color name="isx_grey_600">#4E596C</color>-->
+    <color name="purple">#FF6200EE</color>
+
+    <color name="grey">#444B5A</color>
+    <color name="isx_grey_900">#2C2C2E</color>
+    <color name="isx_gold_grey_200">#C9CFD8</color>
+    <color name="isx_gold_grey_50">#F4F6F7</color>
+    <color name="profile_button">#D9D9D9</color>
+    <color name="isx_black">#000000</color>
+    <color name="green">#00BF55</color>
+
+    <color name="isx_background">#212121</color>
+    <color name="red">#DC2626</color>
+    <color name="light_red">#FCA5A5</color>
 </resources>
