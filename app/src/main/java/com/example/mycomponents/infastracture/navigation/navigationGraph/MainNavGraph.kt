@@ -1,47 +1,50 @@
 package com.example.mycomponents.infastracture.navigation.navigationGraph
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
+import com.example.mycomponents.infastracture.navigation.screen.MAIN_GRAPH_ROUTE
 import com.example.mycomponents.infastracture.navigation.screen.MainScreen
 import com.example.mycomponents.presentation.MainScreen
 
 
-@Composable
-fun MainNavGraph(
-    navController: NavHostController
-) {
-    NavHost(
-        startDestination = MainScreen.Screen.route,
-        route = "MAIN_GRAPH_ROUTE",
-        navController = navController
-    ) {
-        composable(
-            route = MainScreen.Screen.route
-
-        ) {
-
-            MainScreen()
-        }
-
-    }
-}
-
-
-//fun NavGraphBuilder.mainNavGraph(
+//@Composable
+//fun MainNavGraph(
 //    navController: NavHostController
 //) {
-//    navigation(
+//    NavHost(
 //        startDestination = MainScreen.Screen.route,
-//        route = MAIN_GRAPH_ROUTE
+//        route = "MAIN_GRAPH_ROUTE",
+//        navController = navController
 //    ) {
 //        composable(
 //            route = MainScreen.Screen.route
+//
 //        ) {
-//            //DisplaySecurityScreen(navController = navController)
+//
 //            MainScreen()
 //        }
 //
 //    }
 //}
+
+
+fun NavGraphBuilder.mainNavGraph(
+    navController: NavHostController
+) {
+    navigation(
+        startDestination = MainScreen.Screen.route,
+        route = MAIN_GRAPH_ROUTE
+    ) {
+        composable(
+            route = MainScreen.Screen.route
+        ) {
+            //DisplaySecurityScreen(navController = navController)
+            MainScreen()
+        }
+
+    }
+}

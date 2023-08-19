@@ -11,8 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.mycomponents.infastracture.navigation.navigationGraph.BottomNavGraph
-import com.example.mycomponents.infastracture.navigation.navigationGraph.MainNavGraph
+
 import com.example.mycomponents.infastracture.navigation.navigationGraph.RootNavGraph
 import com.example.mycomponents.presentation.ui.theme.MyComponentsTheme
 
@@ -27,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainNavGraph(navController = navController)
+                    RootNavGraph(navController = navController)
 
                 }
             }

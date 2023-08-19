@@ -10,7 +10,9 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-
+import androidx.navigation.compose.composable
+import com.example.mycomponents.infastracture.navigation.screen.Screen
+import com.example.mycomponents.presentation.LoginScreen
 
 
 const val ROOT_GRAPH_ROUTE = "root"
@@ -24,8 +26,19 @@ fun RootNavGraph(
     NavHost(
         navController = navController,
         route = ROOT_GRAPH_ROUTE,
-        startDestination = ""
+        startDestination = Screen.LoginScreen.route
         ) {
+
+        composable(
+            route = Screen.LoginScreen.route
+        ) {
+
+            LoginScreen(navController = navController)
+
+        }
+
+
+        mainNavGraph(navController = navController)
 
 
     }
