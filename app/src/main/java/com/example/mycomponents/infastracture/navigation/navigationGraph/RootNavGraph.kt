@@ -41,3 +41,20 @@ inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navControll
     }
     return hiltViewModel(parentEntry)
 }
+
+//composable(
+//route = FlykkScreen.FlykkSplashScreen.route
+//) {
+//
+//    displaySplashScreen(
+//        navController = navController,
+//        milliseconds = 1000L,
+//        route = AuthScreen.LoginAuthScreen.route
+//    )
+//
+//    FlykkSplashScreen(
+//        navigate = {
+//            navController.navigate(AuthScreen.LoginAuthScreen.route)
+//        }
+//    )
+//}
